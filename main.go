@@ -52,34 +52,34 @@ func main() {
 		Description: "A test command with subcommand-groups and subcommands",
 		Options: []*discordgo.ApplicationCommandOption{
 			{
-				Name:        "test a",
-				Description: "Test a sub-command group",
+				Name:        "test-a",
+				Description: "Test-a sub-command group",
 				Options: []*discordgo.ApplicationCommandOption{
 					{
-						Name:        "test a a",
-						Description: "Test a a sub-command",
+						Name:        "test-a-a",
+						Description: "Test-a-a sub-command",
 						Type:        discordgo.ApplicationCommandOptionSubCommand,
 					},
 					{
-						Name:        "test a b",
-						Description: "Test a b sub-command",
+						Name:        "test-a-b",
+						Description: "Test-a-b sub-command",
 						Type:        discordgo.ApplicationCommandOptionSubCommand,
 					},
 				},
 				Type: discordgo.ApplicationCommandOptionSubCommandGroup,
 			},
 			{
-				Name:        "test b",
-				Description: "Test b sub-command group",
+				Name:        "test-b",
+				Description: "Test-b sub-command group",
 				Options: []*discordgo.ApplicationCommandOption{
 					{
-						Name:        "test a a",
-						Description: "Test a a sub-command",
+						Name:        "test-a-a",
+						Description: "Test-a-a sub-command",
 						Type:        discordgo.ApplicationCommandOptionSubCommand,
 					},
 					{
-						Name:        "test a b",
-						Description: "Test a b sub-command",
+						Name:        "test-a-b",
+						Description: "Test-a-b sub-command",
 						Type:        discordgo.ApplicationCommandOptionSubCommand,
 					},
 				},

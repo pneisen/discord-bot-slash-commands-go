@@ -8,7 +8,7 @@ I just have a simple little bash script that exports the variables and then runs
 #!/bin/bash
 
 export BOT_BOT_TOKEN="<Bot Token Here>"
-export BOT_GUILD_ID="<Guild Token Here>"
+export BOT_GUILD_ID="<Guild ID Here>"
 
 ./discord-bot-slash-commands-go
 ```

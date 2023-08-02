@@ -73,17 +73,22 @@ func main() {
 				Description: "Test-b sub-command group",
 				Options: []*discordgo.ApplicationCommandOption{
 					{
-						Name:        "test-a-a",
-						Description: "Test-a-a sub-command",
+						Name:        "test-b-a",
+						Description: "Test-b-a sub-command",
 						Type:        discordgo.ApplicationCommandOptionSubCommand,
 					},
 					{
-						Name:        "test-a-b",
-						Description: "Test-a-b sub-command",
+						Name:        "test-b-b",
+						Description: "Test-b-b sub-command",
 						Type:        discordgo.ApplicationCommandOptionSubCommand,
 					},
 				},
 				Type: discordgo.ApplicationCommandOptionSubCommandGroup,
+			},
+			{
+				Name:        "test-c",
+				Description: "Test-c sub-command",
+				Type:        discordgo.ApplicationCommandOptionSubCommand,
 			},
 		},
 	}
@@ -113,4 +118,54 @@ func (dh *discordHandler) ready(s *discordgo.Session, m *discordgo.Ready) {
 }
 
 func (dh *discordHandler) command(s *discordgo.Session, i *discordgo.InteractionCreate) {
+	switch i.ApplicationCommandData().Name {
+
+	case "test":
+		options := i.ApplicationCommandData().Options
+		response := ""
+
+		switch options[0].Name {
+
+		case "test-c":
+			response = "Test C Command"
+
+		case "test-a":
+			options := options[0].Options
+			switch options[0].Name {
+
+			case "test-a-a":
+				response = "Test A A Command"
+
+			case "test-a-b":
+				response = "Test A B Command"
+
+			default:
+				response = "Error!"
+			}
+
+		case "test-b":
+			options := options[0].Options
+			switch options[0].Name {
+
+			case "test-b-a":
+				response = "Test B A Command"
+
+			case "test-b-b":
+				response = "Test B B Command"
+
+			default:
+				response = "Error!"
+			}
+
+		default:
+			response = "Error!"
+		}
+
+		s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
+			Type: discordgo.InteractionResponseChannelMessageWithSource,
+			Data: &discordgo.InteractionResponseData{
+				Content: response,
+			},
+		})
+	}
 }
